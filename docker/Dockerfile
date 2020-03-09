@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
 
 # ========== Anaconda ==========
 # https://github.com/ContinuumIO/docker-images/blob/master/anaconda/Dockerfile
