@@ -4,26 +4,27 @@ Implementation of [Learning to Adapt in Dynamic, Real-World Environment through 
 The code is written in Python 3 and builds on Tensorflow. The environments require the Mujoco131 physics engine.
 
 ## Getting Started
-### A. Docker
-If not installed yet, [set up](https://docs.docker.com/install/) docker on your machine.
-Pull our docker container iclavera/learning_to_adapt from docker-hub:
+### A. Docker-gpu
+Install Docker-nvidia
+1. Set repo
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+  sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
 
-```docker pull iclavera/learning_to_adapt ```
-All the necessary dependencies are already installed inside the docker container.
+2. Install docker-gpu
+sudo apt-get install nvidia-docker2
+sudo pkill -SIGHUP dockerd
 
-### B. Anaconda
-Ensure that you have a working MPI implementation ([see here](https://mpi4py.readthedocs.io/en/stable/install.html) for more instructions).
+3. Build Docker Image
+docker image build -t adapt_gpu:1.0 docker/.
 
-For Ubuntu you can install MPI through the package manager:
-```sudo apt-get install libopenmpi-dev ```
+4. Test gpu use
+docker run --runtime=nvidia --rm adapt_gpu:1.0 nvidia-smi
 
-If not done yet, install [anaconda](https://www.anaconda.com/) by following the instructions [here](https://www.anaconda.com/download/#linux)
-
-``` conda env create -f docker/environment.yml ```
-
-For running the environments, the Mujoco physics engine version 131 is needed.
-For setting up [Mujoco](http://www.mujoco.org/) and [mujoco-py](https://github.com/openai/mujoco-py)
-
+------------updated 2020.03.09
 
 ## Usage
 The run scripts are located in the folder ``` run_scripts```.
