@@ -6,7 +6,7 @@ The code is written in Python 3 and builds on Tensorflow. The environments requi
 ## Getting Started
 ### A. Docker-gpu
 Install Docker-nvidia
-1. Set repo
+1. Set repo\
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
   sudo apt-key add -
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
@@ -14,14 +14,14 @@ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.li
   sudo tee /etc/apt/sources.list.d/nvidia-docker.list
 sudo apt-get update
 
-2. Install docker-gpu
+2. Install docker-gpu\
 sudo apt-get install nvidia-docker2
 sudo pkill -SIGHUP dockerd
 
-3. Build Docker Image
+3. Build Docker Image\
 docker image build -t adapt_gpu:1.0 docker/.
 
-4. Test gpu use
+4. Test gpu use\
 docker run --runtime=nvidia --rm adapt_gpu:1.0 nvidia-smi
 
 ------------updated 2020.03.09
